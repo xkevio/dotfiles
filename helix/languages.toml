@@ -3,6 +3,9 @@
 [language-server.tinymist]
 command = "tinymist"
 
+[language-server.tinymist.config.preview.browsing]
+args = ["--data-plane-host=127.0.0.1:0", "--invert-colors=never", "--open"]
+
 [language-server.harper-ls]
 command = "harper-ls"
 args = ["--stdio"]
