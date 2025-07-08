@@ -13,11 +13,14 @@ display-progress-messages = true
 cursor-line = "warning"
 
 [keys.normal]
+A-up = [ "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before" ]
+A-down = [ "extend_to_line_bounds", "delete_selection", "paste_after" ]
 C-l = ":open ~/.config/helix/languages.toml"
 H = ":buffer-previous"
 L = ":buffer-next"
 
 [keys.normal.space]
+t = ':sh exec kitty'
 q = [
   ':sh rm -f /tmp/unique-file',
   ':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file',
@@ -27,3 +30,4 @@ q = [
   ':set mouse false',
   ':set mouse true',
 ]
+
