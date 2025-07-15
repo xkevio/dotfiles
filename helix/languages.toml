@@ -1,5 +1,8 @@
 # Language Servers
 
+[language-server.lalrpop]
+command = "lalrpop-lsp"
+
 [language-server.tinymist]
 command = "tinymist"
 
@@ -34,3 +37,13 @@ formatter = { command = "typstyle" }
 [[language]]
 name = "rust"
 auto-format = true
+
+[[language]]
+name = "lalrpop"
+scope = "source.lalrpop"
+file-types = ["lalrpop"]
+language-servers = ["lalrpop"]
+
+[[grammar]]
+name = "lalrpop"
+source = { git = "https://github.com/traxys/tree-sitter-lalrpop", rev = "8d38e9755c05d37df8a24dadb0fc64f6588ac188" }
