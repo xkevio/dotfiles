@@ -13,9 +13,11 @@ display-progress-messages = true
 cursor-line = "warning"
 
 [keys.normal]
+esc = ":w"
 A-up = [ "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before" ]
 A-down = [ "extend_to_line_bounds", "delete_selection", "paste_after" ]
 C-l = ":open ~/.config/helix/languages.toml"
+C-p = ":lsp-workspace-command tinymist.pinMain \"%sh{pwd}/%{buffer_name}\""
 H = ":buffer-previous"
 L = ":buffer-next"
 
