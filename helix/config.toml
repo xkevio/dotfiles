@@ -5,6 +5,9 @@ bufferline = "multiple"
 end-of-line-diagnostics = "hint"
 cursorline = true
 
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "read-only-indicator", "file-modification-indicator", "version-control"]
+
 [editor.lsp]
 display-inlay-hints = true
 display-progress-messages = true
@@ -14,10 +17,14 @@ cursor-line = "warning"
 
 [keys.normal]
 esc = ":w"
+# Line manipulation: 'D' - delete until line end, 'A-up'/'A-down' - move line up/down.
+D = [ "select_mode", "ensure_selections_forward", "goto_line_end", "delete_selection" ]
 A-up = [ "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before" ]
 A-down = [ "extend_to_line_bounds", "delete_selection", "paste_after" ]
+# Quick language config access for LSP settings.
 C-l = ":open ~/.config/helix/languages.toml"
 C-p = ":lsp-workspace-command tinymist.pinMain \"%sh{pwd}/%{buffer_name}\""
+# Simpler buffer switching with Shift-H/L for tab-like behavior.
 H = ":buffer-previous"
 L = ":buffer-next"
 
