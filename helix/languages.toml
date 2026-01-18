@@ -6,8 +6,9 @@ command = "lalrpop-lsp"
 [language-server.tinymist]
 command = "tinymist"
 
-[language-server.tinymist.config.preview.browsing]
-args = ["--data-plane-host=127.0.0.1:0", "--invert-colors=never", "--open"]
+[language-server.tinymist.config.preview.background]
+enabled = true
+args = ["--data-plane-host=127.0.0.1:23635", "--invert-colors=never", "--open"]
 
 [language-server.harper-ls]
 command = "harper-ls"
@@ -30,9 +31,15 @@ formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
 auto-format = true
 
 [[language]]
+name = "tsx"
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
 name = "typst"
 language-servers = ["tinymist", "harper-ls"]
-formatter = { command = "typstyle" }
+formatter = { command = "typstyle", args = [ "--line-width", "100" ] }
+# auto-format = true
 
 [[language]]
 name = "rust"

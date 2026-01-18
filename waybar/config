@@ -99,7 +99,7 @@
 			    "reboot": "reboot",
 		    	"suspend": "systemctl suspend",
 		    	"hibernate": "systemctl hibernate",
-		    	"logout": "hyprctl dispatch exit"
+		    	"logout": "hyprctl dispatch exec hyprlock"
 	    	}
     },
     "custom/separator": {

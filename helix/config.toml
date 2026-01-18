@@ -4,6 +4,7 @@ theme = "gruvbox_material_dark_hard"
 bufferline = "multiple"
 end-of-line-diagnostics = "hint"
 cursorline = true
+atomic-save = false
 
 [editor.lsp]
 display-inlay-hints = true
