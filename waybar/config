@@ -1,20 +1,18 @@
 // -*- mode: jsonc -*-
 {
-    "spacing": 10, // Gaps between modules (10px)
+    "spacing": 8, // Gaps between modules (10px)
     "modules-left": [
         "hyprland/workspaces",
         "custom/separator",
-        "custom/media"
+        "mpris"
     ],
     "modules-center": [
         "hyprland/window"
     ],
     "modules-right": [
-        "pulseaudio",
-        "custom/separator",
         "cpu",
-        "custom/separator",
         "memory",
+        "pulseaudio",
         "custom/separator",
         "clock",
         "custom/separator",
@@ -25,85 +23,80 @@
         "disable-scroll": true,
         "all-outputs": true,
         "warp-on-scroll": false,
-        "format": "{icon}",
-        "format-icons": {
-            "10": "",
-        }
+        "format": "{name}",
     },
+    // Modules configuration
+    // "niri/workspaces": {
+    //     "disable-scroll": true,
+    //     "all-outputs": false,
+    //     "warp-on-scroll": false,
+    //     "format": "{value}",
+    // },
     "hyprland/window": {
       "icon": true,
-      "icon-size": 20,
+      "icon-size": 18,
       "separate-outputs": true,
-      "max-length": 75
+      "max-length": 50
     },
+    // "niri/window": {
+    //   "icon": true,
+    //   "icon-size": 18,
+    //   "separate-outputs": true,
+    //   "max-length": 50
+    // },
     "clock": {
-        "tooltip": false,
-        "format-alt": "{:%Y-%m-%dT%H:%M:%S}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "left",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        },
         "interval": 1
     },
     "cpu": {
-        "format": "{usage}% ",
+        "format": "  {usage}%",
+        "on-click": "kitty btop",
         "tooltip": false
     },
     "memory": {
-        "format": "{}% "
-    },
-    "network": {
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "format": "  {percentage}%"
     },
     "pulseaudio": {
         "scroll-step": 5,
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
+        "format": "{icon}  {volume}%",
         "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
     },
-    "custom/media": {
-        "format": "{0}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
+    "mpris": {
+        "format": "{player_icon} \"{title}\" – {artist}",  
+        "format-paused": "{status_icon} <i>\"{title}\" – {artist}</i>",
+        "max-length": 45,
+        "player-icons": {
             "spotify": "",
-            "default": "🎜"
+            "default": "󰝚"
         },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null", // Script in resources folder
-        "on-click": "playerctl play-pause",
-        "on-scroll-up": "playerctl next",
-        "on-scroll-down": "playerctl previous"
+        "status-icons": {
+            "paused": "⏸"
+        }
     },
     "custom/power": {
-        "format" : "⏻ ",
+        "format" : " ⏻ ",
     		"tooltip": false,
-	    	"menu": "on-click",
-		    "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
-		    "menu-actions": {
-			    "shutdown": "poweroff",
-			    "reboot": "reboot",
-		    	"suspend": "systemctl suspend",
-		    	"hibernate": "systemctl hibernate",
-		    	"logout": "hyprctl dispatch exec hyprlock"
-	    	}
+    		"on-click": "wlogout -b 4"
     },
     "custom/separator": {
-        "format": "//",
+        "format": "|",
         "tooltip": false,
+        "interval": 0
     }
 }
